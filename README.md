@@ -206,6 +206,34 @@ python -m scripts.export_inference_model \
 The above example is for *places2-512* model. You need to change the `--resolution` argument to `256` for 256 models.
 The exported onnx and pt models and sample results will be saved in the specified `--output-dir` directory.
 
+## Co-Mod-GAN training
+
+If you want to conduct a training on your own dataset, you need to train the teacher network Co-Mod-Gan on your specific dataset before proceeding to MI-GAN training. 
+
+Here we provide example of how to train Co-Mod-GAN on Places and FFHQ datasets which were used in our experiments.
+
+For training Co-Mod-GAN 256 on Places 2 using 8 GPUs, run
+```
+./run.sh comodgan_places256 gpu01234567
+```
+
+
+For training Co-Mod-GAN 512 on Places 2 using 8 GPUs, run
+```
+./run.sh comodgan_places512 gpu01234567
+```
+
+
+For training Co-Mod-GAN 256 on FFHQ using 8 GPUs, run
+```
+./run.sh comodgan_ffhq256 gpu01234567
+```
+
+You can choose to run on specific GPUs as in the case of MI-GAN training.
+
+After the Co-Mod-GAN training is finished, you should modify `teacher1_path` in the corresponding `configs/experiment/migan_*.yaml` config to point to the respective Co-Mod-GAN's best checkpoint and start training the MI-GAN as described in above section.
+
+
 ## For Developers
 We provide a script to convert the whole MI-GAN pipeline into ONNX for easier use in real-world applications. Please see `scripts/create_onnx_pipeline.py` for details. Here is an example usage of the script:
 

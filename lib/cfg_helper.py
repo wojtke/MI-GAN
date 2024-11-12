@@ -147,6 +147,9 @@ class model_cfg_bank(object):
         if name.find('migan') == 0:
             return osp.join(
                 self.cfg_dir, 'migan.yaml')
+        elif name.find('comodgan') == 0:
+            return osp.join(
+                self.cfg_dir, 'comodgan.yaml')
         else:
             raise ValueError
 

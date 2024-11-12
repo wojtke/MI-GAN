@@ -27,6 +27,20 @@ elif [ $1 = "migan_places512" ]; then
 fi
 
 
+# CoModGAN teacher training
+
+if [ $1 = "comodgan_places256" ]; then               
+    exp=comodgan_places256
+    sigmodel=comodgan_places256
+elif [ $1 = "comodgan_ffhq256" ]; then 
+    exp=comodgan_ffhq256
+    sigmodel=comodgan_ffhq256
+elif [ $1 = "comodgan_places512" ]; then
+  exp=comodgan_places512
+  sigmodel=comodgan_places512
+fi
+
+
 if [ $2 = "gpu0" ]; then
     gpu="0"
     port="11211"
